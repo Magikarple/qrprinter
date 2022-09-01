@@ -7,6 +7,7 @@ from pathlib import Path
 URL = 'https://www.erxtools.com'
 with open('url.txt', 'r') as f:
     URL = f.read().strip(' \n')
+    print(f'using loaded from file: {URL}\n')
 
 current_date = date.today()
 pagesize = (2550, 3300)
@@ -67,7 +68,7 @@ codes = []
 for n in range(quantity):
     # Generate text content for codes
     # codes += [qrcode.make(f'SN: {n + start_number}, Date: {current_date.strftime("%b. %d %Y")}, https://www.erxtools.com', version=4, box_size=13, border=0)]
-    codes += [qrcode.make(f'SN: {n + start_number}, Date: {current_date.strftime("%b. %d %Y")}, {URL}', version=4, box_size=10, border=0)]
+    codes += [qrcode.make(f'{URL}?serial number {n + start_number} date {current_date.strftime("%b. %d %Y")}', version=4, box_size=10, border=0)]
 
 im_size = codes[0].size[0]
 # row_limit = pagesize[0] // im_size
@@ -128,10 +129,9 @@ while img_list:
 try:
     with open('save_location.txt', 'r') as save_location:
         save_location = save_location.read().split('#')[0]
-        pdf.output(f+f'\\{page_lengths[0][0]}-{page_lengths[-1][1]}.pdf')
+        pdf.output(save_location+f'\\{page_lengths[0][0]}-{page_lengths[-1][1]}.pdf')
 except:
     pdf.output(f'{Path.home()}\\Desktop\\{page_lengths[0][0]}-{page_lengths[-1][1]}.pdf')
     print(f'Pages saved in {Path.home()}\\OneDrive\\Desktop\\{page_lengths[0][0]}-{page_lengths[-1][1]}.pdf')
 
 input('Finished, press enter to close the window.\n')
-quit()
