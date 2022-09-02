@@ -128,7 +128,7 @@ while img_list:
 
 try:
     with open('save_location.txt', 'r') as save_location:
-        save_location = save_location.read().split('#')[0]
+        save_location = save_location.read().strip(' \n')
         pdf.output(save_location+f'\\{page_lengths[0][0]}-{page_lengths[-1][1]}.pdf')
 except:
     pdf.output(f'{Path.home()}\\Desktop\\{page_lengths[0][0]}-{page_lengths[-1][1]}.pdf')
