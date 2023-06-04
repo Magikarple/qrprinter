@@ -2,3 +2,4 @@ pyinstaller '.\QR Batcher.py' -F --collect-all PIL --collect-all fpdf --collect-
 cp url.txt dist/url.txt
 cp save_location.txt dist/save_location.txt
 cp next_start_num.txt dist/next_start_num.txt
+cp -rf fonts dist/fonts
