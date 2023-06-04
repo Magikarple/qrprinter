@@ -68,7 +68,7 @@ codes = []
 for n in range(quantity):
     # Generate text content for codes
     # codes += [qrcode.make(f'SN: {n + start_number}, Date: {current_date.strftime("%b. %d %Y")}, https://www.erxtools.com', version=4, box_size=13, border=0)]
-    codes += [qrcode.make(f'{URL}?serial number {n + start_number} date {current_date.strftime("%b. %d %Y")}', version=4, box_size=10, border=0)]
+    codes += [qrcode.make(f'{URL}?serial_number_{n + start_number}+date_{current_date.strftime("%b._%d_%Y")}', version=4, box_size=10, border=0)]
 
 im_size = codes[0].size[0]
 # row_limit = pagesize[0] // im_size
